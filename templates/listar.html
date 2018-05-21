@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Listar contato</h2>
+    <div>
+        <table>
+            <tr>
+                <th>id</th>
+                <th>Nome</th>
+                <th>email</th>
+            </tr>
+            {% for contato in contatos %}
+                <tr>
+                    <td><a href='/editar?id={{ contato.id }}'>{{ contato.id }}</a></td>
+                    <td>{{ contato.nome }}</td>
+                    <td>{{ contato.email }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
+
+

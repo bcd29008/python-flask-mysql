@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Editar contato</h2>
+  {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
+  <form action="{{ url_for('editar') }}" method=post>
+     {% for c in contato %}
+      <P>Nome:
+      <BR><input type=text name=nome value="{{ c.nome }}" required>
+      <P>Email:
+      <BR><input type=text name=email value="{{ c.email }}" required>
+      <input type=submit value="Atualizar">
+     {% endfor %}
+  </form>
+{% endblock %}
