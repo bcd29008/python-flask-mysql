@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # http://flask.pocoo.org/docs/1.0/tutorial/
 # g  is a special object that is unique for each request.
 # It is used to store data that might be accessed by multiple functions during the request.
@@ -14,7 +17,7 @@ db_config = {
   'password': 'senha',
   'host': '127.0.0.1',
   'database': 'agenda',
-  'raise_on_warnings': True,
+  'raise_on_warnings': True
 }
 
 SECRET_KEY = 'aula de BCD - string aleatória'
@@ -84,27 +87,20 @@ def editar():
         cid = str(request.args.get('id'))
         g.db = MySQLConnection(**db_config)
         cursor = g.db.cursor(prepared=True)
-        consulta = ("SELECT * FROM Contato WHERE cID = %s")
+        consulta = ("SELECT nome, email FROM Contato WHERE cID = %s")
         cursor.execute(consulta, (cid))
         linha = cursor.fetchone()
-        contato = [
-            {
-                'id' : linha[0],
-                'nome' : linha[1],
-                'email' : linha[2]
-            }
-        ]
         cursor.close()
         g.db.close()
 
-        session['cid'] = cid;
-        return render_template('editar.html', title='Editar contato', contato=contato)
+        session['cid'] = cid
+        return render_template('editar.html', title='Editar contato', contato=linha)
 
     else:
         cid = session['cid']
         nome = request.form['nome']
         email = request.form['email']
-        session.pop('cId', None)
+        session.pop('cid', None)
 
         g.db = MySQLConnection(**db_config)
         cursor = g.db.cursor(prepared=True)
@@ -120,4 +116,4 @@ def editar():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

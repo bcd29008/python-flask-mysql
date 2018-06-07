@@ -8,11 +8,11 @@
                 <th>Nome</th>
                 <th>email</th>
             </tr>
-            {% for contato in contatos %}
+            {% for pessoa in contatos %}
                 <tr>
-                    <td><a href='/editar?id={{ contato.id }}'>{{ contato.id }}</a></td>
-                    <td>{{ contato.nome }}</td>
-                    <td>{{ contato.email }}</td>
+                    <td><a href='/editar?id={{ pessoa.id }}'>{{ pessoa.id }}</a></td>
+                    <td>{{ pessoa.nome }}</td>
+                    <td>{{ pessoa.email }}</td>
                 </tr>
             {% endfor %}
         </table>

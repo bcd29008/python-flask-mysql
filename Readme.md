@@ -1,4 +1,4 @@
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/bcd29008/python-flask-mysql/master/LICENSE)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 # Exemplo de python Flask e MySQL
 
