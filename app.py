@@ -30,7 +30,7 @@ app.secret_key = SECRET_KEY
 def main():
     return render_template('index.html')
 
-@app.route('/inserir', methods=('GET', 'POST'))
+@app.route('/inserir/', methods=('GET', 'POST'))
 def inserir():
 
     if request.method == 'POST':
@@ -52,7 +52,7 @@ def inserir():
 
     return render_template('inserir.html', title='Adicionar contato')
 
-@app.route('/listar')
+@app.route('/listar/')
 def listar():
     # exemplo de uma lista estática - sem consultar DB
     # contatos = [
@@ -81,7 +81,7 @@ def listar():
     return render_template('listar.html', title='Listar', contatos=contatos)
 
 
-@app.route('/editar', methods=('GET', 'POST'))
+@app.route('/editar/', methods=('GET', 'POST'))
 def editar():
     if request.method == 'GET':
         cid = str(request.args.get('id'))

@@ -1,13 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>Listar contato</h2>
-    <div>
-        <table>
+<div class="page-header">
+    <h1>Listar contato</h1>
+</div>
+    <div class="row">
+        <div class="col-md-10">
+        <table class="table table-striped">
+            <thead>
             <tr>
                 <th>id</th>
                 <th>Nome</th>
                 <th>email</th>
             </tr>
+            </thead>
+            <tbody>
             {% for pessoa in contatos %}
                 <tr>
                     <td><a href='/editar?id={{ pessoa.id }}'>{{ pessoa.id }}</a></td>
@@ -15,7 +21,9 @@
                     <td>{{ pessoa.email }}</td>
                 </tr>
             {% endfor %}
+            </tbody>
         </table>
+        </div>
     </div>
 {% endblock %}
 
