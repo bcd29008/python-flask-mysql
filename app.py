@@ -17,6 +17,7 @@ db_config = {
   'password': 'senha',
   'host': '127.0.0.1',
   'database': 'agenda',
+  'port': '3306',
   'raise_on_warnings': True
 }
 
@@ -84,11 +85,10 @@ def listar():
 @app.route('/editar/', methods=('GET', 'POST'))
 def editar():
     if request.method == 'GET':
-        cid = str(request.args.get('id'))
+        cid = int(request.args.get('id'))
         g.db = MySQLConnection(**db_config)
         cursor = g.db.cursor(prepared=True)
-        consulta = ("SELECT nome, email FROM Contato WHERE cID = %s")
-        cursor.execute(consulta, (cid))
+        cursor.execute("SELECT nome, email FROM Contato WHERE cId = ?", (cid,))
         linha = cursor.fetchone()
         cursor.close()
         g.db.close()
@@ -113,6 +113,16 @@ def editar():
 
         return redirect(url_for('listar'))
 
+@app.route('/excluir')
+def excluir():
+    cid = int(request.args.get('id'))
+    g.db = MySQLConnection(**db_config)
+    cursor = g.db.cursor(prepared=True)
+    cursor.execute("DELETE FROM Contato WHERE cId = ?", (cid,))
+    g.db.commit()
+    cursor.close()
+    g.db.close()
+    return redirect(url_for('listar'))
 
 
 if __name__ == '__main__':

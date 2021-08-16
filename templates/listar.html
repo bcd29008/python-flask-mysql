@@ -11,6 +11,7 @@
                 <th>id</th>
                 <th>Nome</th>
                 <th>email</th>
+                <th>Ações</th>
             </tr>
             </thead>
             <tbody>
@@ -19,6 +20,7 @@
                     <td><a href='/editar?id={{ pessoa.id }}'>{{ pessoa.id }}</a></td>
                     <td>{{ pessoa.nome }}</td>
                     <td>{{ pessoa.email }}</td>
+                    <td><a href='/excluir?id={{ pessoa.id }}'><i class="fa fa-trash-o"></i></a></td>
                 </tr>
             {% endfor %}
             </tbody>
